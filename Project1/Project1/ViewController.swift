@@ -114,10 +114,12 @@ class ViewController: UIViewController {
     
     func addStudentButton(){
         if let unwrappedName = nameField.text, let unwrappedYearString = yearField.text, let unwrappedMajor = majorField.text, let unwrappedGPAString = gpaField.text {
-            var unwrappedYearInt: Int? = Int(unwrappedYearString)
-            var unwrappedGPADouble: Double? = Double(unwrappedGPAString)
-            var newStudent = Student(name: unwrappedName, year: unwrappedYearInt ?? 0, major: unwrappedMajor, gpa: unwrappedGPADouble ?? 0)
-            studentsArray.append(newStudent)
+            if let unwrappedYearInt = Int(unwrappedYearString), let unwrappedGPADouble = Double(unwrappedGPAString) {
+                if unwrappedGPADouble >= 0.0 && unwrappedGPADouble <= 4.33 {
+                    let newStudent = Student(name: unwrappedName, year: unwrappedYearInt, major: unwrappedMajor, gpa: unwrappedGPADouble)
+                    studentsArray.append(newStudent)
+                }
+            }
         }
         var displayText: String = ""
         for student in studentsArray {
