@@ -13,16 +13,22 @@ class Student{
     var major: String
     var gpa: Double
     var year: Int
-    init(name: String, year: Int, major: String, gpa: Double){
+    var birthday: Date
+    
+    init(name: String, year: Int, major: String, gpa: Double, birthday: Date){
         self.name = name
         self.major = major
         self.year = year
         self.gpa = gpa
-    }
-    func description() -> String{
-        return "\(name) is majoring in \(major) with a \(gpa)"
+        self.birthday = birthday
     }
     
+    
+    
+    func description() -> String{
+        let birthdayString: String = self.birthday.description
+        return "Born in \( birthdayString.substring(to: birthdayString.index(birthdayString.startIndex, offsetBy: 3))) , \(name) is majoring in \(major) with a \(gpa)"
+    }
     
 }
 
@@ -34,6 +40,7 @@ class ViewController: UIViewController {
     var majorField: UITextField!
     var gpaField: UITextField!
     var studentInfoDisplay: UITextView!
+    var datePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +56,7 @@ class ViewController: UIViewController {
         nameTextView.isEditable = false
         view.addSubview(nameTextView)
         
-        nameField = UITextField(frame: CGRect(x: 100, y: 50, width: 230, height: 30))
+        nameField = UITextField(frame: CGRect(x: 100, y: 50, width: 260, height: 30))
         nameField.isHidden = false
         nameField.borderStyle = UITextBorderStyle.roundedRect
         view.addSubview(nameField)
@@ -60,7 +67,7 @@ class ViewController: UIViewController {
         yearTextView.isEditable = false
         view.addSubview(yearTextView)
         
-        yearField = UITextField(frame: CGRect(x: 100, y: 100, width: 230, height: 30))
+        yearField = UITextField(frame: CGRect(x: 100, y: 100, width: 260, height: 30))
         yearField.isHidden = false
         yearField.borderStyle = UITextBorderStyle.roundedRect
         view.addSubview(yearField)
@@ -71,7 +78,7 @@ class ViewController: UIViewController {
         majorTextView.isEditable = false
         view.addSubview(majorTextView)
         
-        majorField = UITextField(frame: CGRect(x: 100, y: 150, width: 230, height: 30))
+        majorField = UITextField(frame: CGRect(x: 100, y: 150, width: 260, height: 30))
         majorField.isHidden = false
         majorField.borderStyle = UITextBorderStyle.roundedRect
         view.addSubview(majorField)
@@ -82,31 +89,42 @@ class ViewController: UIViewController {
         gpaTextView.isEditable = false
         view.addSubview(gpaTextView)
         
-        gpaField = UITextField(frame: CGRect(x: 100, y: 200, width: 230, height: 30))
+        gpaField = UITextField(frame: CGRect(x: 100, y: 200, width: 260, height: 30))
         gpaField.isHidden = false
         gpaField.borderStyle = UITextBorderStyle.roundedRect
         view.addSubview(gpaField)
+        
+        let dateTextView = UITextView(frame: CGRect(x: 30, y: 250, width: 70, height: 50))
+        dateTextView.text = "Birthday:"
+        dateTextView.font = UIFont(name: (dateTextView.font?.fontName)!, size: 15)
+        dateTextView.isEditable = false
+        view.addSubview(dateTextView)
+        
+        datePicker = UIDatePicker(frame: CGRect(x: 100, y: 250, width: 260, height: 50))
+        datePicker.maximumDate = Date(timeIntervalSinceNow: .init(0))
+        datePicker.datePickerMode = .date
+        view.addSubview(datePicker)
         
         let button = UIButton(frame: CGRect(x: view.center.x, y: 250, width: 120, height: 30))
         button.backgroundColor = UIColor.white
         button.setTitleColor(.blue, for: .normal)
         button.setTitle("Add Student", for: UIControlState.normal)
         button.addTarget(self, action: #selector(addStudentButton), for: .touchUpInside)
-        button.center = CGPoint(x: view.center.x, y: 280)
+        button.center = CGPoint(x: view.center.x, y: 330)
         view.addSubview(button)
         
         let studentInfoHeader = UITextView(frame: CGRect(x:  view.center.x , y: 600, width: 300, height: 50))
         studentInfoHeader.text = "Student Information"
         studentInfoHeader.font = UIFont(name: (studentInfoHeader.font?.fontName)!, size: 15)
         studentInfoHeader.textAlignment = .center
-        studentInfoHeader.center = CGPoint(x: view.center.x, y: 350)
+        studentInfoHeader.center = CGPoint(x: view.center.x, y: 380)
         studentInfoHeader.isEditable = false
         view.addSubview(studentInfoHeader)
         
         studentInfoDisplay = UITextView(frame: CGRect(x: view.center.x, y: 350, width: 300, height: 300))
         studentInfoDisplay.isEditable = false
         studentInfoDisplay.textAlignment = .center
-        studentInfoDisplay.center = CGPoint(x: view.center.x, y: 350 + 150)
+        studentInfoDisplay.center = CGPoint(x: view.center.x, y: 380 + 150)
         
         view.addSubview(studentInfoDisplay)
         
@@ -116,7 +134,7 @@ class ViewController: UIViewController {
         if let unwrappedName = nameField.text, let unwrappedYearString = yearField.text, let unwrappedMajor = majorField.text, let unwrappedGPAString = gpaField.text {
             if let unwrappedYearInt = Int(unwrappedYearString), let unwrappedGPADouble = Double(unwrappedGPAString) {
                 if unwrappedGPADouble >= 0.0 && unwrappedGPADouble <= 4.33 {
-                    let newStudent = Student(name: unwrappedName, year: unwrappedYearInt, major: unwrappedMajor, gpa: unwrappedGPADouble)
+                    let newStudent = Student(name: unwrappedName, year: unwrappedYearInt, major: unwrappedMajor, gpa: unwrappedGPADouble, birthday: datePicker.date)
                     studentsArray.append(newStudent)
                 }
             }
