@@ -17,7 +17,7 @@ class CardView: UIView {
     
     var imageView: UIImageView!
     var nameLabel: UILabel!
-    
+    var overlay: UIImageView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -35,6 +35,7 @@ class CardView: UIView {
         nameLabel = UILabel(frame: CGRect(x: 0, y: frame.height * 0.85, width: frame.width * 0.9, height: frame.height * 0.15))
         nameLabel.center = CGPoint(x: frame.width / 2.0, y: nameLabel.center.y)
         nameLabel.baselineAdjustment = .alignCenters
+        overlay = UIImageView()
         addSubview(nameLabel)
     }
     
@@ -46,4 +47,22 @@ class CardView: UIView {
         imageView.image = image
         nameLabel.text = name
     }
+    
+    func addOverlay(overlayBool: Bool, check: Bool) {
+        overlay.frame = CGRect(x: 0, y: 0, width: imageView.frame.width / 8, height: imageView.frame.height / 8)
+        if (overlayBool == true && check == true){
+            overlay.image = UIImage(named: "yes")
+            overlay.center = CGPoint(x: imageView.center.x / 3, y: imageView.center.y / 8)
+        }
+        else if (overlayBool == true && check == false) {
+            overlay.image = UIImage(named: "no")
+            overlay.center = CGPoint(x: imageView.center.x * 5 / 3, y: imageView.center.y / 8)
+        }
+        else{
+            overlay.image = UIImage()
+        }
+        imageView.addSubview(overlay)
+        
+    }
+    
 }

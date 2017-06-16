@@ -32,7 +32,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .gray
         let likedBarButton = UIBarButtonItem(title: "Likes", style: UIBarButtonItemStyle.plain, target: self, action: #selector(tappedLikedBarButton))
         self.navigationItem.setRightBarButton(likedBarButton, animated: true)
@@ -71,6 +70,7 @@ class ViewController: UIViewController {
         }
         return shuffledStack
     }
+    
     func setupView() {
         
         if tinderStack.count == 0 {
@@ -87,10 +87,10 @@ class ViewController: UIViewController {
                 cardOnTop = CardView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
                 cardOnTop?.center = view.center
                 cardOnTop?.setup(image: firstPerson.photo, name: firstPerson.name)
-                
             }
             
         }
+        //last person remaining
         if tinderStack.count > 1{
             if let secondPerson = tinderStack[1] as Person? {
                 cardOnBottom = CardView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
@@ -109,8 +109,7 @@ class ViewController: UIViewController {
     
     func cardWasSwiped(direction: Bool) { //direction = true means swiped left
         
-        if (direction == true)
-        {
+        if (direction == true) { //animate to the left, add to list of likes
             var x = 1
             if let cardToAnimate = cardOnTop{
                 UIView.animate(withDuration: 1, animations: {
@@ -125,7 +124,7 @@ class ViewController: UIViewController {
             
             likedStack.append(Person(name: (cardOnTop?.nameLabel.text)!, photo: cardOnTop?.imageView.image))
         }
-        else{
+        else { // animate to the right
             var x = 1
             if let cardToAnimate = cardOnTop{
                 UIView.animate(withDuration: 1, animations: {
@@ -160,24 +159,44 @@ class ViewController: UIViewController {
         setupView()
     }
     
+    var prevLocation: CGPoint!
+    var currentLocation: CGPoint!
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let location = touches.first?.location(in: view){
             touchedLocation = location
+            prevLocation = location
         }
         
     }
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) { //animate card, add check or cross overlay
         if let location = touches.first?.location(in: view),
             let firstCard = cardOnTop {
+            currentLocation = location
+            
             firstCard.center = CGPoint(x: firstCard.center.x + (location.x - touchedLocation.x ), y: firstCard.center.y + (location.y - touchedLocation.y ))
             touchedLocation = location
+
+            if (currentLocation.x < prevLocation.x )
+            {
+                firstCard.addOverlay(overlayBool: true, check: true)
+            }
+            else if (currentLocation.x > prevLocation.x)
+            {
+                firstCard.addOverlay(overlayBool: true, check: false)
+            }
+
+            if (firstCard.alpha > 0.5) {
+                firstCard.alpha = firstCard.alpha - 0.05
+            }
+            
+            prevLocation = currentLocation
+            
         }
-        
-        //nav bar
         
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) { //determine direction the card was swiped
         if let location = touches.first?.location(in: view), let firstCard = cardOnTop
         {
             if (location.x < CGFloat(view.frame.width * 0.5 - 80))
@@ -192,11 +211,16 @@ class ViewController: UIViewController {
             else
             {
                 firstCard.center = view.center
+                resetOverlay(card: firstCard)
             }
             
         }
     }
     
+    func resetOverlay(card: CardView){
+        card.alpha = 1.0
+        card.addOverlay(overlayBool: false, check: true)
+    }
     
 }
 

@@ -4,6 +4,6 @@ This app is modeled after Tinder: The user is presented with a stack of cards wi
 The user can swipe left if he/she "likes" the person or swipe right is he/she doesn't.'
 
 Implemented Challenge Problems: <br>
-[ ] Add an x or check overlay depending on the direction swiped <br>
+[x] Add an x or check overlay depending on the direction swiped <br>
 [x] Add a button to reset cards in shuffled order <br>
 [x] Add a navigation controller for a screen that shows the people the user "likes" <br>
