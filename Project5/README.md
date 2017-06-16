@@ -6,4 +6,4 @@ The user can swipe left if he/she "likes" the person or swipe right is he/she do
 Implemented Challenge Problems: <br>
 [ ] Add an x or check overlay depending on the direction swiped <br>
 [x] Add a button to reset cards in shuffled order <br>
-[ ] Add a navigation controller for a screen that shows the people the user "likes" <br>
+[x] Add a navigation controller for a screen that shows the people the user "likes" <br>

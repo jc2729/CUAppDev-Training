@@ -34,18 +34,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .gray
-        //        let likedBarButton = UIBarButtonItem(title: "People I've Swiped Yes To", style: UIBarButtonItemStyle.plain, target: self, action: #selector(tappedLikedBarButton))
-        
-        //        self.navigationController!.navigationBar.isHidden=false
-        //        navigationController?.navigationItem.rightBarButtonItem = likedBarButton
-        
+        let likedBarButton = UIBarButtonItem(title: "Likes", style: UIBarButtonItemStyle.plain, target: self, action: #selector(tappedLikedBarButton))
+        self.navigationItem.setRightBarButton(likedBarButton, animated: true)
+        navigationController?.navigationItem.rightBarButtonItem = likedBarButton
         fetchTinderStack()
     }
-    //    func tappedLikedBarButton(){
-    //        let yesViewController = YesViewController()
-    //        yesViewController.setYesList(list: likedStack)
-    //        navigationController?.pushViewController(yesViewController, animated: true)
-    //    }
+    
+    func tappedLikedBarButton(){
+        let yesViewController = YesViewController()
+        yesViewController.setYesList(list: likedStack)
+        navigationController?.pushViewController(yesViewController, animated: true)
+    }
+    
     func fetchTinderStack() {
         
         let api = API()

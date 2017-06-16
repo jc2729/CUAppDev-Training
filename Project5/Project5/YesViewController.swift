@@ -19,7 +19,7 @@ class YesViewController: UIViewController {
     }
     
     func listYes(){
-        var yesTextView = UITextView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: CGFloat(40+10*liked.count)))
+        let yesTextView = UITextView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         yesTextView.center = CGPoint(x: view.center.x, y: view.center.y)
         yesTextView.textAlignment = .center
         
@@ -29,7 +29,7 @@ class YesViewController: UIViewController {
         }
         
         yesTextView.text = yesText
-        
+        yesTextView.isEditable = false
         
         view.addSubview(yesTextView)
     }
