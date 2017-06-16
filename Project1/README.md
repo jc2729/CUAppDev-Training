@@ -5,5 +5,5 @@ This is an application storing a list of students. Each student has a name, year
 Implemented Challenge Problems: <br>
 [x] Validate the year so that it can only be a logical number <br>
 [x] Verify that the GPA is valid <br>
-[ ] List the students in sorted order <br>
-[ ] Set a birthday for the student using a UIDatePicker <br>
+[x] List the students in sorted order <br>
+[x] Set a birthday for the student using a UIDatePicker <br>

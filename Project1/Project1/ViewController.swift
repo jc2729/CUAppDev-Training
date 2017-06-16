@@ -27,7 +27,7 @@ class Student{
     
     func description() -> String{
         let birthdayString: String = self.birthday.description
-        return "Born in \( birthdayString.substring(to: birthdayString.index(birthdayString.startIndex, offsetBy: 3))) , \(name) is majoring in \(major) with a \(gpa)"
+        return "Born in \( birthdayString.substring(to: birthdayString.index(birthdayString.startIndex, offsetBy: 4))), \(name) is majoring in \(major) with a \(gpa)"
     }
     
 }
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     var gpaField: UITextField!
     var studentInfoDisplay: UITextView!
     var datePicker: UIDatePicker!
-    
+    var sortingControl: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -71,6 +71,7 @@ class ViewController: UIViewController {
         yearField.isHidden = false
         yearField.borderStyle = UITextBorderStyle.roundedRect
         view.addSubview(yearField)
+        
         
         let majorTextView = UITextView(frame: CGRect(x: 30, y: 150, width: 70, height: 50))
         majorTextView.text = "Major:"
@@ -121,13 +122,39 @@ class ViewController: UIViewController {
         studentInfoHeader.isEditable = false
         view.addSubview(studentInfoHeader)
         
-        studentInfoDisplay = UITextView(frame: CGRect(x: view.center.x, y: 350, width: 300, height: 300))
+        
+        studentInfoDisplay = UITextView(frame: CGRect(x: view.center.x, y: 350, width: 300, height: 200))
         studentInfoDisplay.isEditable = false
         studentInfoDisplay.textAlignment = .center
-        studentInfoDisplay.center = CGPoint(x: view.center.x, y: 380 + 150)
-        
+        studentInfoDisplay.center = CGPoint(x: view.center.x, y: 380 + 100)
+        studentInfoDisplay.isScrollEnabled = true
+
         view.addSubview(studentInfoDisplay)
         
+        let categories = ["GPA", "Name", "Year"]
+        sortingControl = UISegmentedControl(items: categories)
+        sortingControl.frame = CGRect(x: 0, y: 0, width: 200, height: 30)
+        sortingControl.center = CGPoint(x: view.center.x, y: studentInfoDisplay.center.y + 135)
+        sortingControl.selectedSegmentIndex = 0
+        sortingControl.addTarget(self, action: #selector(sortStudentsArray), for: .valueChanged)
+        view.addSubview(sortingControl)
+        
+    }
+    func sortStudentsArray(sender: UISegmentedControl){
+        switch sender.selectedSegmentIndex {
+        case 1:
+            //sort by name
+           
+            studentsArray = studentsArray.sorted(by: { $0.name < $1.name })
+        case 2:
+            
+            //sort by year
+            studentsArray = studentsArray.sorted(by: { $0.year < $1.year })
+        default:
+            //sort by GPA
+            studentsArray = studentsArray.sorted(by: { $0.gpa > $1.gpa })
+        }
+        displayStudents()
     }
     
     func addStudentButton(){
@@ -139,6 +166,11 @@ class ViewController: UIViewController {
                 }
             }
         }
+        sortStudentsArray(sender: sortingControl)
+        displayStudents()
+    }
+    
+    func displayStudents() {
         var displayText: String = ""
         for student in studentsArray {
             displayText += student.description() + "\n"
@@ -146,7 +178,6 @@ class ViewController: UIViewController {
         
         studentInfoDisplay.text = displayText
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recrea ted.
