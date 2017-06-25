@@ -8,10 +8,12 @@
 
 import UIKit
 
+//Updates one interest for a friend
 protocol InterestDelegate{
     func updateInterest(oldInterest: String, interest: String)
 }
 
+//ViewController for editing an interest
 class InterestViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var interestTextField: UITextField!
     var oldInterest: String? = nil
@@ -42,6 +44,7 @@ class InterestViewController: UIViewController, UITextFieldDelegate {
         return false;
     }
     
+    //update the detail view controller with the edited interest
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         interest = interestTextField.text

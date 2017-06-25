@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DetailViewController.swift
 //  Project4
 //
 //  Created by Janice Chan on 3/18/17.
@@ -8,10 +8,12 @@
 
 import UIKit
 
+//Passes updated interests to data model in Feed
 protocol DetailDelegate{
     func updateInterests(oldInterests: [String], updatedInterests: [String])
 }
 
+//Displays one friend's interests
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InterestDelegate{
   
 
@@ -36,7 +38,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = UITableViewCell(style: .default, reuseIdentifier: "")
         
         let interest = interests[indexPath.row]
-        
         cell.textLabel?.text = interest
         
         return cell
@@ -59,6 +60,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         navigationController?.pushViewController(interestViewController, animated: true)
     }
+    
+    //Update one of a particular friend's interests
     func updateInterest(oldInterest: String, interest: String) {
         let oldInterests = interests
         interests[interests.index(of: oldInterest)!] = interest

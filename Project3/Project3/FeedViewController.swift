@@ -12,18 +12,22 @@ class Friend {
     var name: String
     var age: Int
     var interests: [String] = [String]()
-    init(name: String, age: Int, interests: [String]) {
+    var image: UIImage
+    init(name: String, age: Int, interests: [String], image: UIImage = #imageLiteral(resourceName: "profile")) {
         self.name = name
         self.age = age
         self.interests = interests
+        self.image = image
     }
+    
     
 }
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DetailDelegate {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DetailDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var tableView: UITableView!
     var friends: [Friend] = [Friend]()
+    var lastSelectedIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +55,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         friends = [friend1, friend2, friend3, friend4, friend5, friend6]
     }
     
+    //add picture, age, name to cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: .default, reuseIdentifier: "")
@@ -58,19 +63,25 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let friend = friends[indexPath.row]
         
         cell.textLabel?.text = friend.name + " is " + String(friend.age) + " years old "
-        
+        cell.imageView?.image = friend.image
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(addProfilePicture))
+        singleTap.numberOfTapsRequired = 1
+        cell.imageView?.isUserInteractionEnabled = true
+        cell.imageView?.addGestureRecognizer(singleTap)
+    
         return cell
         
     }
     
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
     
+    //pushes a controller containing a list of the friend's interests
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+
         tableView.deselectRow(at: indexPath, animated: true)
-        
         let friend = friends[indexPath.row]
         
         let detailViewController = DetailViewController()
@@ -80,7 +91,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    //challenge 1
+    //challenge 1: set different heights for the rows
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row%2 == 0{
             return 40
@@ -88,7 +99,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return 60
     }
     
-    //challenge 5
+    //challenge 5: allow removing friends
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             friends.remove(at: indexPath.row)
@@ -100,7 +111,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return true
     }
     
-    //challenge 2
+    //challenge 2: allow editing interests
     func updateInterests(oldInterests: [String], updatedInterests: [String]) {
       
         for friend in friends{
@@ -109,6 +120,33 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
         
+    }
+    
+    //challenge 3: allow adding pictures from camera roll, source from either camera roll or photo library
+    func addProfilePicture(sender: UITapGestureRecognizer) {
+        let tapLocation = sender.location(in: tableView)
+        lastSelectedIndex = tableView.indexPathForRow(at: tapLocation)?.row
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePickerController.sourceType = .camera
+        } else {
+            imagePickerController.sourceType = .photoLibrary
+        }
+        
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    //select picture to add
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let photo = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            friends[lastSelectedIndex!].image = photo
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+        tableView.reloadData()
     }
     
 }
