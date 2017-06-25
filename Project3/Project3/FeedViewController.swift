@@ -1,6 +1,6 @@
 //
 //  FeedViewController.swift
-//  Project4
+//  Project3
 //
 //  Created by Janice Chan on 3/18/17.
 //  Copyright © 2017 Janice Chan. All rights reserved.
@@ -23,7 +23,7 @@ class Friend {
     
 }
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DetailDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DetailDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AddFriendDelegate {
     
     var tableView: UITableView!
     var friends: [Friend] = [Friend]()
@@ -40,8 +40,27 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+        
+        let addFriendBarButton = UIBarButtonItem(title: "Add Friend", style: UIBarButtonItemStyle.plain, target: self, action: #selector(addFriend))
+        self.navigationItem.setRightBarButton(addFriendBarButton, animated: true)
+        navigationController?.navigationItem.rightBarButtonItem = addFriendBarButton
+
         view.addSubview(tableView)
     }
+    
+    //challenge 4: user can add friends
+    func addFriend() {
+        let addFriendViewController = AddFriendViewController()
+        addFriendViewController.delegate = self
+        navigationController?.pushViewController(addFriendViewController, animated: true)
+    }
+    
+    //method in the AddFriendDelegate
+    func addNewFriend(name: String, age: Int, interest: String) {
+        friends.append(Friend(name: name, age: age, interests: [interest]))
+        tableView.reloadData()
+    }
+    
     
     func listFriends() {
         

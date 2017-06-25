@@ -12,6 +12,7 @@
 		08A684341EF5B51400F80221 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A684331EF5B51400F80221 /* DetailViewController.swift */; };
 		08A684391EF5B51400F80221 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A684381EF5B51400F80221 /* Assets.xcassets */; };
 		08A684441EF5B55900F80221 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A684431EF5B55900F80221 /* FeedViewController.swift */; };
+		08B3B9161EFF7C8E00F708E5 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B3B9151EFF7C8E00F708E5 /* AddFriendViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		08A684381EF5B51400F80221 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08A6843D1EF5B51500F80221 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08A684431EF5B55900F80221 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		08B3B9151EFF7C8E00F708E5 /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				08A684431EF5B55900F80221 /* FeedViewController.swift */,
 				08A684381EF5B51400F80221 /* Assets.xcassets */,
 				08A6843D1EF5B51500F80221 /* Info.plist */,
+				08B3B9151EFF7C8E00F708E5 /* AddFriendViewController.swift */,
 			);
 			path = Project3;
 			sourceTree = "<group>";
@@ -136,6 +139,7 @@
 			files = (
 				0802EF051EFF36DD009A98D0 /* InterestViewController.swift in Sources */,
 				08A684341EF5B51400F80221 /* DetailViewController.swift in Sources */,
+				08B3B9161EFF7C8E00F708E5 /* AddFriendViewController.swift in Sources */,
 				08A684441EF5B55900F80221 /* FeedViewController.swift in Sources */,
 				08A684321EF5B51400F80221 /* AppDelegate.swift in Sources */,
 			);

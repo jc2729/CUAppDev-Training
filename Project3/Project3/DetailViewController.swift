@@ -1,6 +1,6 @@
 //
 //  DetailViewController.swift
-//  Project4
+//  Project3
 //
 //  Created by Janice Chan on 3/18/17.
 //  Copyright © 2017 Janice Chan. All rights reserved.
