@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0802EF051EFF36DD009A98D0 /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0802EF041EFF36DD009A98D0 /* InterestViewController.swift */; };
 		08A684321EF5B51400F80221 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A684311EF5B51400F80221 /* AppDelegate.swift */; };
 		08A684341EF5B51400F80221 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A684331EF5B51400F80221 /* DetailViewController.swift */; };
 		08A684391EF5B51400F80221 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A684381EF5B51400F80221 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0802EF041EFF36DD009A98D0 /* InterestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestViewController.swift; sourceTree = "<group>"; };
 		08A6842E1EF5B51400F80221 /* Project3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A684311EF5B51400F80221 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08A684331EF5B51400F80221 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 			children = (
 				08A684311EF5B51400F80221 /* AppDelegate.swift */,
 				08A684331EF5B51400F80221 /* DetailViewController.swift */,
+				0802EF041EFF36DD009A98D0 /* InterestViewController.swift */,
 				08A684431EF5B55900F80221 /* FeedViewController.swift */,
 				08A684381EF5B51400F80221 /* Assets.xcassets */,
 				08A6843D1EF5B51500F80221 /* Info.plist */,
@@ -131,6 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0802EF051EFF36DD009A98D0 /* InterestViewController.swift in Sources */,
 				08A684341EF5B51400F80221 /* DetailViewController.swift in Sources */,
 				08A684441EF5B55900F80221 /* FeedViewController.swift in Sources */,
 				08A684321EF5B51400F80221 /* AppDelegate.swift in Sources */,
@@ -278,6 +282,7 @@
 				08A684421EF5B51500F80221 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

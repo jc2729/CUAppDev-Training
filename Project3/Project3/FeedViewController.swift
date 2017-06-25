@@ -20,7 +20,7 @@ class Friend {
     
 }
 
-class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DetailDelegate {
     
     var tableView: UITableView!
     var friends: [Friend] = [Friend]()
@@ -75,7 +75,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let detailViewController = DetailViewController()
         detailViewController.interests = friend.interests
-        
+        detailViewController.delegate = self
         navigationController?.pushViewController(detailViewController, animated: true)
         
     }
@@ -98,6 +98,17 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    //challenge 2
+    func updateInterests(oldInterests: [String], updatedInterests: [String]) {
+      
+        for friend in friends{
+            if (friend.interests.elementsEqual(oldInterests)){
+                friend.interests = updatedInterests
+            }
+        }
+        
     }
     
 }

@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  ViewController.swift
 //  Project4
 //
 //  Created by Janice Chan on 3/18/17.
@@ -8,9 +8,16 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+protocol DetailDelegate{
+    func updateInterests(oldInterests: [String], updatedInterests: [String])
+}
+
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InterestDelegate{
+  
+
     var tableView: UITableView!
     var interests: [String]!
+    weak var delegate: FeedViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +50,24 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-        
         let interest = interests[indexPath.row]
+
+        let interestViewController = InterestViewController()
+        interestViewController.oldInterest = interest
+        interestViewController.interest = interest
+        interestViewController.delegate = self
         
+        navigationController?.pushViewController(interestViewController, animated: true)
     }
-    
-    
+    func updateInterest(oldInterest: String, interest: String) {
+        let oldInterests = interests
+        interests[interests.index(of: oldInterest)!] = interest
+        delegate?.updateInterests(oldInterests: oldInterests!, updatedInterests: interests!)
+     
+    }
+   
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 }
 
