@@ -51,6 +51,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .singleLine
+        tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0)
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
         fetchContacts()
@@ -60,7 +61,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func fetchContacts() {
         
-        let contact1 = Contact(name: "Janice Chan", number: "(123) 456-7890", emails: ["jc2729@cornell.edu", "janicec1234@gmail.com"], image: UIImage(named: "contact1")! )
+        let contact1 = Contact(name: "Janice Chan", number: "(408) 821-8123", emails: ["jc2729@cornell.edu", "janicec1234@gmail.com"], image: UIImage(named: "contact1")! )
         let contact2 = Contact(name: "Justin Kuang", number: "(321) 456-5790", emails: ["zkasdf@cornell.edu"], image:UIImage(named: "contact2")!)
         let contact3 = Contact(name: "Olivia Xiang", number: "(121) 126-7890", emails: ["xsd2@cornell.edu"], image: UIImage(named: "contact3")!)
         let contact4 = Contact(name: "Andy Zhang", number: "(743) 478-9450", emails: ["az359@cornell.edu","az@gmail.com"], image: UIImage(named: "contact4")!)
@@ -91,7 +92,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return UITableViewCell()
     }
     
-    
+    //tap to edit a contact
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -104,7 +105,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         navigationController?.pushViewController(detailViewController, animated: true)
     }
     
-    //challenge 1
+    //challenge 1: delete a contact
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             contacts.remove(at: indexPath.row)

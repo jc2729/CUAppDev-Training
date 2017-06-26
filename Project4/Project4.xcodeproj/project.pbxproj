@@ -96,6 +96,7 @@
 				TargetAttributes = {
 					08A6840B1EF5B12400F80221 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = WP3EH2Y5GT;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -243,6 +244,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = WP3EH2Y5GT;
 				INFOPLIST_FILE = Project4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = janicechan.Project4;
@@ -255,6 +257,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = WP3EH2Y5GT;
 				INFOPLIST_FILE = Project4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = janicechan.Project4;

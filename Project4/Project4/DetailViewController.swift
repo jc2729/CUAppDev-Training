@@ -71,7 +71,7 @@ class DetailViewController: UIViewController {
 
     }
     
-
+    //edit contact
     func tappedEditBarButton() {
 
         nameTextField.isUserInteractionEnabled = true
@@ -95,6 +95,7 @@ class DetailViewController: UIViewController {
         
     }
     
+    //save changes and go back to contacts list
     func tappedSaveButton() {
         nameTextField.isUserInteractionEnabled = false
         numberTextField.isUserInteractionEnabled = false
