@@ -8,24 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		0848F87F1F00BC8B00444F17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0848F87E1F00BC8B00444F17 /* AppDelegate.swift */; };
-		0848F8811F00BC8B00444F17 /* BlueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0848F8801F00BC8B00444F17 /* BlueViewController.swift */; };
 		0848F8861F00BC8B00444F17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0848F8851F00BC8B00444F17 /* Assets.xcassets */; };
-		0848F8911F00BCF600444F17 /* RandomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0848F8901F00BCF600444F17 /* RandomViewController.swift */; };
-		0848F8931F00BD0800444F17 /* RedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0848F8921F00BD0800444F17 /* RedViewController.swift */; };
-		0848F8951F00BD1700444F17 /* TriangleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0848F8941F00BD1700444F17 /* TriangleViewController.swift */; };
 		0848F8971F00BD2400444F17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0848F8961F00BD2400444F17 /* ViewController.swift */; };
+		0848F8991F00C2A900444F17 /* ShapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0848F8981F00C2A900444F17 /* ShapeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0848F87B1F00BC8B00444F17 /* Project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0848F87E1F00BC8B00444F17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0848F8801F00BC8B00444F17 /* BlueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueViewController.swift; sourceTree = "<group>"; };
 		0848F8851F00BC8B00444F17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0848F88A1F00BC8B00444F17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0848F8901F00BCF600444F17 /* RandomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomViewController.swift; sourceTree = "<group>"; };
-		0848F8921F00BD0800444F17 /* RedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedViewController.swift; sourceTree = "<group>"; };
-		0848F8941F00BD1700444F17 /* TriangleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleViewController.swift; sourceTree = "<group>"; };
 		0848F8961F00BD2400444F17 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0848F8981F00C2A900444F17 /* ShapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,11 +53,8 @@
 			isa = PBXGroup;
 			children = (
 				0848F87E1F00BC8B00444F17 /* AppDelegate.swift */,
-				0848F8801F00BC8B00444F17 /* BlueViewController.swift */,
-				0848F8901F00BCF600444F17 /* RandomViewController.swift */,
-				0848F8921F00BD0800444F17 /* RedViewController.swift */,
-				0848F8941F00BD1700444F17 /* TriangleViewController.swift */,
 				0848F8961F00BD2400444F17 /* ViewController.swift */,
+				0848F8981F00C2A900444F17 /* ShapeViewController.swift */,
 				0848F8851F00BC8B00444F17 /* Assets.xcassets */,
 				0848F88A1F00BC8B00444F17 /* Info.plist */,
 			);
@@ -141,10 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0848F8971F00BD2400444F17 /* ViewController.swift in Sources */,
-				0848F8931F00BD0800444F17 /* RedViewController.swift in Sources */,
-				0848F8911F00BCF600444F17 /* RandomViewController.swift in Sources */,
-				0848F8811F00BC8B00444F17 /* BlueViewController.swift in Sources */,
-				0848F8951F00BD1700444F17 /* TriangleViewController.swift in Sources */,
+				0848F8991F00C2A900444F17 /* ShapeViewController.swift in Sources */,
 				0848F87F1F00BC8B00444F17 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

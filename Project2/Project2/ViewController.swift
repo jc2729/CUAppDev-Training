@@ -59,26 +59,26 @@ class ViewController: UIViewController {
     }
     
     func enterTriangleArena(){
-        let triangleViewController = TriangleViewController()
-        navigationController?.pushViewController(triangleViewController, animated: true)
+        let shapeViewController = ShapeViewController(shape: "Triangle")
+        navigationController?.pushViewController(shapeViewController, animated: true)
     }
     
     func enterRedArena(){
         
-        let redViewController = RedViewController()
-        navigationController?.pushViewController(redViewController, animated: true)
+        let shapeViewController = ShapeViewController(shape: "Red")
+        navigationController?.pushViewController(shapeViewController, animated: true)
         
         
     }
     func enterBlueArena(){
-        let blueViewController = BlueViewController()
-        present(blueViewController, animated: true)
+        let shapeViewController = ShapeViewController(shape: "Blue")
+        present(shapeViewController, animated: true)
         
     }
     
     func enterRandomArena(){
-        let randomViewController = RandomViewController()
-        navigationController?.pushViewController(randomViewController, animated: true)
+        let shapeViewController = ShapeViewController(shape: "Random")
+        navigationController?.pushViewController(shapeViewController, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
