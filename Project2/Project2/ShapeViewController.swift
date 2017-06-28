@@ -65,6 +65,11 @@ class ShapeViewController: UIViewController {
     //adds the specified shape depending on the arena
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         shapeView = UIView(frame: CGRect(x: 0 , y: 0, width: 30, height: 30))
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(erase))
+        doubleTap.numberOfTapsRequired = 2
+        doubleTap.delaysTouchesBegan = true //don't mistake tapping for adding a square
+        shapeView.addGestureRecognizer(doubleTap)
+        
         if let location = touches.first?.location(in: view) {
             shapeView.center = location
             switch shapeType {
@@ -82,6 +87,7 @@ class ShapeViewController: UIViewController {
                 shapeLayer.path = path
                 shapeLayer.strokeColor = UIColor.black.cgColor
                 shapeLayer.backgroundColor = UIColor.black.cgColor
+                
                 view.layer.addSublayer(shapeLayer)
                 
             case "Red":
@@ -100,6 +106,12 @@ class ShapeViewController: UIViewController {
             }
         }
         
+    }
+    
+    //double tap to erase squares
+    func erase(gesture: UITapGestureRecognizer){
+        print ("erasing")
+        gesture.view?.removeFromSuperview()
     }
     
     
