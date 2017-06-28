@@ -12,15 +12,17 @@ class ShapeViewController: UIViewController {
     var shapeType: String!
     var shapeView: UIView!
     var eraseMode: Bool!
+    var heightSlider: UISlider!
+    var widthSlider: UISlider!
     
     //sets up the background
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        if shapeType == ("Random"){
+        if shapeType == ("Random") {
             view.backgroundColor = randomColor()
         }
-        else if shapeType == ("Blue"){
+        else if shapeType == ("Blue") {
             let backButton = UIButton(frame: CGRect(x: 0 , y: 25, width: view.frame.width, height: 30))
             backButton.setTitleColor(.blue, for: .normal)
             backButton.setTitle("Back", for: UIControlState.normal)
@@ -53,6 +55,29 @@ class ShapeViewController: UIViewController {
         showButton.setTitle("Show All", for: UIControlState.normal)
         showButton.addTarget(self, action: #selector(showAll), for: .touchUpInside)
         view.addSubview(showButton)
+        
+        if shapeType != ("Random") {
+            let rotateVertical = CGAffineTransform(rotationAngle: CGFloat(M_PI * -0.5))
+            heightSlider = UISlider(frame: CGRect(x: -30 , y: view.frame.height - 200, width: view.frame.width / 2, height: 30))
+            heightSlider.maximumValue = 60
+            heightSlider.minimumValue = 1
+            heightSlider.transform = rotateVertical
+            
+            widthSlider = UISlider(frame: CGRect(x: view.frame.width / 2 + 50 , y: view.frame.height - 200, width: view.frame.width / 2, height: 30))
+            widthSlider.maximumValue = 60
+            widthSlider.minimumValue = 1
+            widthSlider.transform = rotateVertical
+            view.addSubview(heightSlider)
+            view.addSubview(widthSlider)
+            heightSlider.setValue(30, animated: true) //default value is 30x30
+            widthSlider.setValue(30, animated: true)
+            let heightSliderLabel = UILabel(frame: CGRect(x: 0, y: view.frame.height - 300, width: 100, height: 30))
+            heightSliderLabel.text = "Height"
+            let widthSliderLabel = UILabel(frame: CGRect(x: view.frame.width / 2 + 100, y: view.frame.height - 300, width: 100, height: 30))
+            widthSliderLabel.text = "Width"
+            view.addSubview(heightSliderLabel)
+            view.addSubview(widthSliderLabel)
+        }
 
     
     }
@@ -64,7 +89,8 @@ class ShapeViewController: UIViewController {
     
     //adds the specified shape depending on the arena
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        shapeView = UIView(frame: CGRect(x: 0 , y: 0, width: 30, height: 30))
+        shapeView = UIView(frame: CGRect(x: 0 , y: 0, width: Int(widthSlider.value), height: Int(heightSlider.value)))
+        
         let doubleTap = UITapGestureRecognizer(target: self, action: #selector(erase))
         doubleTap.numberOfTapsRequired = 2
         doubleTap.delaysTouchesBegan = true //don't mistake tapping for adding a square
@@ -110,7 +136,6 @@ class ShapeViewController: UIViewController {
     
     //double tap to erase squares
     func erase(gesture: UITapGestureRecognizer){
-        print ("erasing")
         gesture.view?.removeFromSuperview()
     }
     
