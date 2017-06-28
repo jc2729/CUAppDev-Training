@@ -11,6 +11,7 @@ import UIKit
 class ShapeViewController: UIViewController {
     var shapeType: String!
     var shapeView: UIView!
+    var eraseMode: Bool!
     
     //sets up the background
     override func viewDidLoad() {
@@ -53,6 +54,7 @@ class ShapeViewController: UIViewController {
         showButton.addTarget(self, action: #selector(showAll), for: .touchUpInside)
         view.addSubview(showButton)
 
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,9 +64,13 @@ class ShapeViewController: UIViewController {
     
     //adds the specified shape depending on the arena
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        switch shapeType {
-        case "Triangle":
-            if let location = touches.first?.location(in: view) {
+        shapeView = UIView(frame: CGRect(x: 0 , y: 0, width: 30, height: 30))
+        if let location = touches.first?.location(in: view) {
+            shapeView.center = location
+            switch shapeType {
+                
+            case "Triangle":
+                
                 let shapeLayer = CAShapeLayer()
                 let path = CGMutablePath()
                 let vertexA: CGPoint = CGPoint(x: location.x - 15, y: location.y + 15)
@@ -78,34 +84,24 @@ class ShapeViewController: UIViewController {
                 shapeLayer.backgroundColor = UIColor.black.cgColor
                 view.layer.addSublayer(shapeLayer)
                 
-            }
-        case "Red":
-            if let location = touches.first?.location(in: view) {
-                shapeView = UIView(frame: CGRect(x: 0 , y: 0, width: 30, height: 30))
-                shapeView.center = location
+            case "Red":
                 shapeView.backgroundColor = .red
                 view.addSubview(shapeView)
-            }
-        case "Random":
-            if let location = touches.first?.location(in: view) {
-                shapeView = UIView(frame: CGRect(x: 0 , y: 0, width: 30, height: 30))
-                shapeView.center = location
+            case "Random":
+                
                 shapeView.backgroundColor = randomColor()
                 view.addSubview(shapeView)
-            }
-        case "Blue":
-            if let location = touches.first?.location(in: view) {
-                shapeView = UIView(frame: CGRect(x: 0 , y: 0, width: 30, height: 30))
-                shapeView.center = location
+            case "Blue":
                 shapeView.backgroundColor = .blue
                 view.addSubview(shapeView)
+                
+            default:
+                return
             }
-
-        default:
-            return
         }
-    
+        
     }
+    
     
     //show all shapes
     func showAll(){
@@ -125,7 +121,7 @@ class ShapeViewController: UIViewController {
     
     //hide all shapes
     func hideAll(){
-        switch shapeType{
+        switch shapeType {
         case "Triangle":
             for sublayer in view.layer.sublayers! {
                 if sublayer is CAShapeLayer {
@@ -142,7 +138,7 @@ class ShapeViewController: UIViewController {
         }
         
     }
-    
+
     //returns a random color for the shape or background
     func randomColor() -> UIColor{
         let redFloat: CGFloat = CGFloat(arc4random())/pow(2, 31)
