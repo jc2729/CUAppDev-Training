@@ -58,7 +58,7 @@ class Board {
         
         numRevealed = 0
     }
-    
+//    
     func addMines(){
         for _ in 0 ..< numTotalMines {
             var mineRow: Int

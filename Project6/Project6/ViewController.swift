@@ -12,22 +12,30 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     var collectionView: UICollectionView!
     var boardDisplay: Board!
     var newGame: UIButton!
+    var boardSizeSelector: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         boardDisplay = Board(rows: 8, cols: 8)
         boardDisplay.printBoard()
-
+        
         view.backgroundColor = .white
         
         
-        
         collectionView = UICollectionView(frame: CGRect(x: 0, y: 35, width: view.frame.width, height: view.frame.width) , collectionViewLayout: UICollectionViewFlowLayout())
+        
         
         collectionView.register(CellButton.self, forCellWithReuseIdentifier: "Reuse")
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
+        
+        
+        boardSizeSelector = UISegmentedControl(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+        boardSizeSelector.center = CGPoint(x: view.center.x, y: view.frame.height - 100)
+        boardSizeSelector.insertSegment(withTitle: "8x8", at: 0, animated: true)
+        boardSizeSelector.insertSegment(withTitle: "10x10", at: 1, animated: true)
+        boardSizeSelector.insertSegment(withTitle: "12x12", at: 2, animated: true)
         
         newGame = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
         newGame.center = CGPoint(x: view.center.x, y: view.frame.height - 50)
@@ -35,6 +43,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         newGame.setTitleColor(.blue, for: .normal)
         newGame.setTitle("Start New Game", for: UIControlState.normal)
         newGame.addTarget(self, action: #selector(startNewGame), for: .touchUpInside)
+        
+        
+        view.addSubview(boardSizeSelector)
         view.addSubview(newGame)
         view.addSubview(collectionView)
         
@@ -57,7 +68,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let data = boardDisplay.board[indexPath.section][indexPath.item]
         
         if (data.revealed == true && data.mine == true) {
-            cell.textLabel.text = "YIKES"
+            cell.textLabel.text = "..."
             endGame(won: false)
         }
         else if (data.revealed == true) {
@@ -78,7 +89,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let separator: CGFloat = 3
         let itemWidth = CGFloat((view.frame.width - ( separator * CGFloat(boardDisplay.cols+1))) / CGFloat(boardDisplay.cols) )
         
-        return CGSize(width: itemWidth, height: itemWidth) //fix height depending on sections
+        return CGSize(width: itemWidth, height: itemWidth)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -95,7 +106,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 3
     }
     
     
@@ -118,9 +129,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     
     func startNewGame() {
-        boardDisplay.generateNewContent()
+        
+        if let selectedBoardSize = boardSizeSelector.titleForSegment(at: boardSizeSelector.selectedSegmentIndex){
+            if selectedBoardSize == "12x12" {
+                boardDisplay = Board(rows: 12, cols: 12)
+            }
+            else if selectedBoardSize == "10x10" {
+                boardDisplay = Board(rows: 10, cols: 10)
+            }
+            else {
+                boardDisplay = Board(rows: 8, cols: 8)
+            }
+        }
+        
         collectionView.reloadData()
+        
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
