@@ -16,13 +16,15 @@ class CellButton: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+self.sizeToFit()
         self.backgroundColor = UIColor(colorLiteralRed: 173/255, green: 216/255, blue: 230/255, alpha: 1)
-        textLabel = UILabel(frame: CGRect(x: 0, y: 0 , width: self.frame.width, height: self.frame.height))
-        textLabel.textAlignment = .center
+        textLabel = UILabel(frame: CGRect(x: 0, y: 0 , width: self.frame.width / 2, height: self.frame.height / 2
+        ))
+        textLabel.textAlignment = .center        
         
-        contentView.addSubview(textLabel)
-        
+        let stackView = UIStackView()
+        stackView.addSubview(textLabel)
+            contentView.addSubview(stackView)
     }
     
     

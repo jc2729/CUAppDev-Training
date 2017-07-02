@@ -98,7 +98,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         if (cell.mine == false) {
             boardDisplay.numRevealed += 1
         }
-        collectionView.reloadData()
+        collectionView.reloadItems(at: [indexPath])
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
