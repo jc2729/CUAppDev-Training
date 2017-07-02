@@ -110,5 +110,21 @@ class Board {
         }
     }
     
+    func ripple(row: Int, col: Int){
+        let delRow=[-1,0,1]
+        let delCol=[-1,0,1]
+        for r in delRow {
+            for c in delCol {
+                if (row + r) >= 0 && (row + r) < rows && (col + c)>=0 && (col + c) < cols && board[row + r][col + c].mine == false && !board[row + r][col + c].revealed {
+                    board[row + r][col + c].revealed = true
+                    numRevealed += 1
+                    
+                }
+                
+            }
+        }
+       
+    }
+    
     
 }

@@ -94,11 +94,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = boardDisplay.board[indexPath.section][indexPath.item]
+        if (!cell.revealed){
         cell.revealed = true
+        boardDisplay.numRevealed += 1
+
         if (cell.mine == false) {
-            boardDisplay.numRevealed += 1
+            boardDisplay.ripple(row: cell.row, col: cell.col)
         }
-        collectionView.reloadItems(at: [indexPath])
+        
+        collectionView.reloadData()
+        }
         
     }
     
@@ -142,7 +147,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 boardDisplay = Board(rows: 8, cols: 8)
             }
         }
-        
+        else {
+            boardDisplay = Board(rows: 8, cols: 8)
+
+        }
         collectionView.reloadData()
         
     }
