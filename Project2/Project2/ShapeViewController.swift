@@ -58,7 +58,7 @@ class ShapeViewController: UIViewController {
         
         if shapeType != ("Random") {
             let rotateVertical = CGAffineTransform(rotationAngle: CGFloat(M_PI * -0.5))
-            heightSlider = UISlider(frame: CGRect(x: -30 , y: view.frame.height - 200, width: view.frame.width / 2, height: 30))
+            heightSlider = UISlider(frame: CGRect(x: -50 , y: view.frame.height - 200, width: view.frame.width / 2, height: 30))
             heightSlider.maximumValue = 60
             heightSlider.minimumValue = 1
             heightSlider.transform = rotateVertical
@@ -71,7 +71,7 @@ class ShapeViewController: UIViewController {
             view.addSubview(widthSlider)
             heightSlider.setValue(30, animated: true) //default value is 30x30
             widthSlider.setValue(30, animated: true)
-            let heightSliderLabel = UILabel(frame: CGRect(x: 0, y: view.frame.height - 300, width: 100, height: 30))
+            let heightSliderLabel = UILabel(frame: CGRect(x: 20, y: view.frame.height - 300, width: 100, height: 30))
             heightSliderLabel.text = "Height"
             let widthSliderLabel = UILabel(frame: CGRect(x: view.frame.width / 2 + 100, y: view.frame.height - 300, width: 100, height: 30))
             widthSliderLabel.text = "Width"
