@@ -4,5 +4,5 @@ This app displays a list of contacts. The user can edit the information of the s
 
 Implemented Challenge Problems: <br>
 [x] Swipe left to delete the contact <br>
-[x] Display multiple addresses and add or remove them <br> ~630pm
-[ 3.] Tap to call the contact and email the contact <br> ~7pm
+[x] Display multiple addresses and add or remove them <br> 
+[x] Tap to call the contact and email the contact <br>
