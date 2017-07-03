@@ -56,7 +56,7 @@ class ShapeViewController: UIViewController {
         showButton.addTarget(self, action: #selector(showAll), for: .touchUpInside)
         view.addSubview(showButton)
         
-        if shapeType != ("Random") {
+        if shapeType != ("Triangle") {
             let rotateVertical = CGAffineTransform(rotationAngle: CGFloat(M_PI * -0.5))
             heightSlider = UISlider(frame: CGRect(x: -50 , y: view.frame.height - 200, width: view.frame.width / 2, height: 30))
             heightSlider.maximumValue = 60
